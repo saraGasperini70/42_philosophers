@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = philosophers.c utilities.c input_checks.c number_utilities.c
+SRCS = philosophers.c utilities.c input_checks.c number_utilities.c ft_split.c
 
 CC = gcc
 

@@ -1,6 +1,6 @@
 #include "philo.h"
 
-void	ft_error()
+void	ft_error(void)
 {
 	printf("Error!\n");
 	exit(EXIT_FAILURE);
@@ -13,21 +13,38 @@ void	ft_check_input(int ac, char **av)
 	i = 1;
 	if (ac > 6 || ac < 5)
 	{
-		printf("Troppi argomenti / Non abbastanza argomenti\n");
 		ft_error();
 	}
 	while (av[i])
 	{
 		if (!ft_isnumber(av[i]))
 		{
-			printf("Non é un numero\n");
 			ft_error();
 		}
 		i++;
 	}
-	if (!(ft_atoi(av[1]) >= 1))
+	if (!(ft_atoi(av[1]) >= 1) || !(ft_atoi(av[2]) > 0)
+		|| !(ft_atoi(av[3]) > 0) || !(ft_atoi(av[4]) > 0))
 	{
-		printf("Non abbastanza filosofi\n");
 		ft_error();
 	}
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	else
+	{
+		while (s1[i] == s2[i])
+		{
+			if (s1[i] == '\0' || s2[i] == '\0')
+				break ;
+			i++;
+		}
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
