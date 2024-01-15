@@ -1,7 +1,7 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct t_data;
+struct	s_data;
 
 typedef struct s_philo
 {
@@ -19,19 +19,19 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	pthread_t	*tid;
-	int			philo_nb;
-	int			meals_nb;
-	int			dead;
-	int			finished;
-	t_philo		*philos;
-	__uint64_t	death_time;
-	__uint64_t	eat_time;
-	__uint64_t	sleep_time;
-	__uint64_t	start_time;
+	pthread_t		*tid;
+	int				philo_nb;
+	int				meals_nb;
+	int				dead;
+	int				finished;
+	t_philo			*philos;
+	__uint64_t		death_time;
+	__uint64_t		eat_time;
+	__uint64_t		sleep_time;
+	__uint64_t		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
-}
+}	t_data;
 
 #endif
