@@ -1,33 +1,69 @@
 #include "philo.h"
 
-void	ft_data_init(char **matrix, t_data *data)
+static void	ft_data_init(t_philo *philos, t_data *data)
 {
-	data->philo_nb = ft_atoi(matrix[0]);
-	data->death_time = (__uint64_t) ft_atoi(matrix[1]);
-	data->eat_time = (__uint64_t) ft_atoi(matrix[2]);
-	data->sleep_time = (__uint64_t) ft_atoi(matrix[3]);
-	if (matrix[4])
-		data->meals_nb = ft_atoi(matrix[4]);
-	pthread_mutex_init(data->forks, NULL);
-	pthread_mutex_init(&data->lock, NULL);
-	pthread_mutex_init(&data->write, NULL);
+	data->dead = 0;
+	data->philos = philos;
+	pthread_mutex_init(&data->dead_lock, NULL);
+	pthread_mutex_init(&data->meal_lock, NULL);
+	pthread_mutex_init(&data->write_lock, NULL);
 }
 
-void	ft_philo_init(t_data *data)
+static void	ft_init_input(char **av, t_philo *philo)
+{
+	philo->philo_nb = ft_atoi(av[1]);
+	philo->time_to_die = ft_atoi(av[2]);
+	philo->time_to_eat = ft_atoi(av[3]);
+	philo->time_to_sleep = ft_atoi(av[4]);
+	if (av[5])
+		philo->eat_times = ft_atoi(av[5]);
+	else
+		philo->eat_times = -1;
+}
+
+static void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *forks)
 {
 	int	i;
 
 	i = 0;
-	while (i >= data->philo_nb)
+	while (i > philos->philo_nb)
 	{
-		data->philos[i].data = data;
-		data->philos[i].id = i + 1;
-		data->philos[i].time_to_die = data->death_time;
-		data->philos[i].time_to_eat = 0;
-		data->philos[i].status = 0;
-		pthread_mutex_init(&data->philos[i].lock, NULL);
-		pthread_mutex_init(&data->philos[i].l_fork, NULL);
-		pthread_mutex_init(&data->philos[i].r_fork, NULL);
+		philos[i].id = i + 1;
+		philos[i].eating = 0;
+		philos[i].meals_eaten = 0;
+		ft_init_input(av, &philos[i]);
+		philos[i].start_time = ft_get_current_time();
+		philos[i].last_meal = ft_get_current_time();
+		philos[i].write_lock = &data->write_lock;
+		philos[i].dead_lock = &data->dead_lock;
+		philos[i].meal_lock = &data->meal_lock;
+		philos[i].dead = &data->dead;
+		philos[i].l_fork = &forks[i];
+		if (i == 0)
+			philos[i].r_fork = &forks[philos[i].philo_nb - 1];
+		else
+			philos[i].r_fork = &forks[i - 1];
 		i++;
 	}
+}
+
+static void	ft_forks_init(pthread_mutex_t *forks, int forks_nb)
+{
+	int i;
+
+	i = 0;
+	while (i < forks_nb)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+}
+
+int	ft_init(char **av, t_data *data, pthread_mutex_t *forks, t_philo *philos)
+{
+	printf("%p\n", data);
+	ft_data_init(philos, data);
+	ft_forks_init(forks, ft_atoi(av[1]));
+	ft_philo_init(av, philos, data, forks);
+	return (0);
 }

@@ -8,7 +8,7 @@ int	ft_isnumber(char *av)
 	if (ft_issign(av[i]) && av[i + 1] != '\0')
 	{
 		if (av[i] == '-')
-			ft_error();
+			ft_error(7);
 		i++;
 	}
 	while (av[i] && ft_isdigit(av[i]))
