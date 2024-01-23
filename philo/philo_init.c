@@ -61,7 +61,6 @@ static void	ft_forks_init(pthread_mutex_t *forks, int forks_nb)
 
 int	ft_init(char **av, t_data *data, pthread_mutex_t *forks, t_philo *philos)
 {
-	printf("%p\n", data);
 	ft_data_init(philos, data);
 	ft_forks_init(forks, ft_atoi(av[1]));
 	ft_philo_init(av, philos, data, forks);
