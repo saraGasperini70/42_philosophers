@@ -8,6 +8,7 @@ int	main(int ac, char **av)
 
 	ft_check_input(ac, av);
 	ft_init(av, &data, forks, philos);
-	ft_create_thread(forks, data);
+	ft_create_thread(data);
+	/*ft_destroy_all()*/
 	return (0);
 }
