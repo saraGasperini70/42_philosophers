@@ -26,7 +26,7 @@ int		ft_isdigit(char c);
 int		ft_issign(char c);
 
 /*philo_init*/
-int	ft_init(char **av, t_data *data, pthread_mutex_t *forks, t_philo *philos);
+int		ft_init(char **av, t_data *data, pthread_mutex_t *forks, t_philo *philos);
 
 /*utilities*/
 int		ft_atoi(const char *str);
@@ -37,9 +37,10 @@ void	ft_free_matrix(char **av);
 
 /*utilities_plus*/
 size_t	ft_get_current_time(void);
+void	ft_destroy_all(char *str, t_data *data, pthread_mutex_t *forks);
 
 /*threads*/
 void	*ft_monitor(void *param);
-void	ft_create_thread(t_data data);
+int		ft_create_thread(t_data *data, pthread_mutex_t *forks);
 
 #endif
