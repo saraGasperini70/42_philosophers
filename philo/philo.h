@@ -38,4 +38,7 @@ void	ft_free_matrix(char **av);
 /*utilities_plus*/
 size_t	ft_get_current_time(void);
 
+/*threads*/
+void	ft_create_thread(t_data data);
+
 #endif
