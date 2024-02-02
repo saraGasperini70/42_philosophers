@@ -10,6 +10,7 @@
 # include "structs.h"
 
 /*ft_routine*/
+int	ft_check_dead(t_philo *philo);
 void	*ft_routine(void *param);
 
 /*ft_split*/
@@ -26,7 +27,10 @@ int		ft_isdigit(char c);
 int		ft_issign(char c);
 
 /*philo_init*/
-int	ft_init(char **av, t_data *data, pthread_mutex_t *forks, t_philo *philos);
+void	ft_data_init(t_philo *philos, t_data *data);
+void	ft_init_input(char **av, t_philo *philo);
+void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *forks);
+void	ft_forks_init(pthread_mutex_t *forks, int forks_nb);
 
 /*utilities*/
 int		ft_atoi(const char *str);
@@ -37,5 +41,12 @@ void	ft_free_matrix(char **av);
 
 /*utilities_plus*/
 size_t	ft_get_current_time(void);
+void	ft_destroy_all(char *str, t_data *data, pthread_mutex_t *forks);
+int	ft_usleep(size_t millisecs);
+
+/*threads*/
+void	*ft_monitor(void *param);
+void	ft_print_msg(char *str, t_philo *philo, int id);
+int		ft_create_thread(t_data *data, pthread_mutex_t *forks);
 
 #endif

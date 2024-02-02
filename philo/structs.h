@@ -11,11 +11,11 @@ typedef struct s_philo
 	int				id;
 	int				eating;
 	int				meals_eaten;
-	int				last_meal;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				start_time;
+	size_t			last_meal;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	size_t			start_time;
 	int				philo_nb;
 	int				eat_times;
 	int				*dead;
