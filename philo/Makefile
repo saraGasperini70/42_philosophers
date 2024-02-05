@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = philosophers.c utilities.c input_checks.c number_utilities.c ft_split.c philo_init.c routine.c utilities_plus.c threads.c monitor.c
+SRCS = philosophers.c utilities.c input_checks.c number_utilities.c ft_split.c philo_init.c ft_routine.c utilities_plus.c threads.c monitor.c
 
 HEADER = philo.h
 

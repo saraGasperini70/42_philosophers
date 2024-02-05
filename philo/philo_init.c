@@ -1,32 +1,32 @@
 #include "philo.h"
 
-void	ft_data_init(t_philo *philos, t_data *data)
+static void	ft_data_init(t_philo *philos, t_data *data)
 {
 	data->dead = 0;
 	data->philos = philos;
-	pthread_mutex_init(&data->write_lock, NULL);
 	pthread_mutex_init(&data->dead_lock, NULL);
 	pthread_mutex_init(&data->meal_lock, NULL);
+	pthread_mutex_init(&data->write_lock, NULL);
 }
 
-void	ft_init_input(char **av, t_philo *philo)
+static void	ft_init_input(char **av, t_philo *philo)
 {
+	philo->philo_nb = ft_atoi(av[1]);
 	philo->time_to_die = ft_atoi(av[2]);
 	philo->time_to_eat = ft_atoi(av[3]);
 	philo->time_to_sleep = ft_atoi(av[4]);
-	philo->philo_nb = ft_atoi(av[1]);
 	if (av[5])
 		philo->eat_times = ft_atoi(av[5]);
 	else
 		philo->eat_times = -1;
 }
 
-void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *forks)
+static void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *forks)
 {
 	int	i;
 
 	i = 0;
-	while (i < ft_atoi(av[1]))
+	while (i > philos->philo_nb)
 	{
 		philos[i].id = i + 1;
 		philos[i].eating = 0;
@@ -47,7 +47,7 @@ void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *fo
 	}
 }
 
-void	ft_forks_init(pthread_mutex_t *forks, int forks_nb)
+static void	ft_forks_init(pthread_mutex_t *forks, int forks_nb)
 {
 	int i;
 
@@ -57,4 +57,12 @@ void	ft_forks_init(pthread_mutex_t *forks, int forks_nb)
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
+}
+
+int	ft_init(char **av, t_data *data, pthread_mutex_t *forks, t_philo *philos)
+{
+	ft_data_init(philos, data);
+	ft_forks_init(forks, ft_atoi(av[1]));
+	ft_philo_init(av, philos, data, forks);
+	return (0);
 }
