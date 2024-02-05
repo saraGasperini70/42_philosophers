@@ -6,7 +6,7 @@ int	ft_create_thread(t_data *data, pthread_mutex_t *forks)
 	pthread_t	supervisor;
 
 	i = 0;
-	if (pthread_create(&supervisor, NULL, &ft_monitor, &data->philos) != 0)
+	if (pthread_create(&supervisor, NULL, &ft_monitor, data->philos) != 0)
 		ft_destroy_all("Error in thread creation.", data, forks);
 	while (i < data->philos[0].philo_nb)
 	{
