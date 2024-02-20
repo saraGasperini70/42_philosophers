@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgasperi <sgasperi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/20 12:03:02 by sgasperi          #+#    #+#             */
+/*   Updated: 2024/02/20 12:03:57 by sgasperi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_create_thread(t_data *data, pthread_mutex_t *forks)
@@ -10,7 +22,8 @@ int	ft_create_thread(t_data *data, pthread_mutex_t *forks)
 		ft_destroy_all("Error in thread creation.", data, forks);
 	while (i < data->philos[0].philo_nb)
 	{
-		if (pthread_create(&data->philos[i].t1, NULL, ft_routine, &data->philos[i]) != 0)
+		if (pthread_create(&data->philos[i].t1, NULL,
+				ft_routine, &data->philos[i]) != 0)
 			ft_destroy_all("Error in thread creation.", data, forks);
 		i++;
 	}

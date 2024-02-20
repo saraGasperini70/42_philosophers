@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgasperi <sgasperi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/20 12:00:25 by sgasperi          #+#    #+#             */
+/*   Updated: 2024/02/20 12:00:55 by sgasperi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -10,7 +22,7 @@
 # include "structs.h"
 
 /*ft_routine*/
-int	ft_check_dead(t_philo *philo);
+int		ft_check_dead(t_philo *philo);
 void	*ft_routine(void *param);
 
 /*ft_split*/
@@ -29,7 +41,8 @@ int		ft_issign(char c);
 /*philo_init*/
 void	ft_data_init(t_philo *philos, t_data *data);
 void	ft_init_input(char **av, t_philo *philo);
-void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *forks);
+void	ft_philo_init(char **av, t_philo *philos, t_data *data,
+			pthread_mutex_t *forks);
 void	ft_forks_init(pthread_mutex_t *forks, int forks_nb);
 
 /*utilities*/
@@ -42,7 +55,7 @@ void	ft_free_matrix(char **av);
 /*utilities_plus*/
 size_t	ft_get_current_time(void);
 void	ft_destroy_all(char *str, t_data *data, pthread_mutex_t *forks);
-int	ft_usleep(size_t millisecs);
+int		ft_usleep(size_t millisecs);
 
 /*threads*/
 void	*ft_monitor(void *param);

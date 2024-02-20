@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgasperi <sgasperi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/20 12:01:37 by sgasperi          #+#    #+#             */
+/*   Updated: 2024/02/20 12:02:13 by sgasperi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_data_init(t_philo *philos, t_data *data)
@@ -21,7 +33,8 @@ void	ft_init_input(char **av, t_philo *philo)
 		philo->eat_times = -1;
 }
 
-void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *forks)
+void	ft_philo_init(char **av, t_philo *philos, t_data *data,
+	pthread_mutex_t *forks)
 {
 	int	i;
 
@@ -49,7 +62,7 @@ void	ft_philo_init(char **av, t_philo *philos, t_data *data, pthread_mutex_t *fo
 
 void	ft_forks_init(pthread_mutex_t *forks, int forks_nb)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < forks_nb)
